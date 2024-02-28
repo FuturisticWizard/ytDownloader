@@ -20,31 +20,38 @@ def get_logged_users():
 
     return logged_username
 
-def download_video():
+def main():
         
     link = argv[1]
-    yt = YouTube(link)
-    os_system = platform.system()
-    print("Title: ", yt.title)
+    try:
+        yt = YouTube(link)
+        os_system = platform.system()
+        print("Title: ", yt.title)
 
-    print("View: ", yt.views)
-    print("os_system: ", os_system)
-    loggedAs = get_logged_users()
-    yd = yt.streams.get_highest_resolution()
+        print("View: ", yt.views)
+        print("os_system: ", os_system)
+        loggedAs = get_logged_users()
+        yd = yt.streams.get_highest_resolution()
+        
+        if os_system == 'Windows':
+            print("Os system detected: ", os_system)
+            final_destination = r"C:\Users\{}\Downloads".format(loggedAs)
+            
+        elif os_system == 'Linux':
+            print("Os system detected: ", os_system)
+            final_destination = r"/home/{}/".format(loggedAs)
+            
+        else: 
+            print("Undetected OS system")
+            final_destination = input("Undetected OS system, specify download destination: ")
+            
+
+        print("Downloading to : ", final_destination)
+        yd.download(final_destination) 
+        print("Downloaded Successfully !!! ")
+    except Exception as e:
+        print(f"An error occurred: {e}")
     
-    if os_system == 'Windows':
-        print("Os system detected: ", os_system)
-        final_destination = r"C:\Users\{}\Downloads".format(loggedAs)
-        print("Downloading to : ", final_destination)
-    elif os_system == 'Linux':
-        print("Os system detected: ", os_system)
-        final_destination = r"/home/{}/".format(loggedAsLinux)
-        print("Downloading to : ", final_destination)
-    else: 
-        print("Undetected OS system")
-        final_destination = input("Undetected OS system, specify download destination: ")
-        print("Downloading to : ", final_destination)
-    yd.download(final_destination) 
 
 if __name__ == "__main__":
-    download_video()
+    main()

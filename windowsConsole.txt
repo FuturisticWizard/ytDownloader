@@ -1,0 +1,33 @@
+To run your YouTube downloader script from the Windows command prompt using a custom command like ytd, you can follow these steps:
+
+Create a Batch File:
+
+Open a text editor (such as Notepad) and create a new file.
+Paste the following content into the file:
+
+@echo off
+cd /d %~dp0
+call venv\Scripts\activate
+python ytDownloader2.py %*
+
+
+Save the file with a .bat extension, for example, ytd.bat. Place this batch file in the same directory as your ytDownloader.py script.
+Update System Environment Variables:
+
+Add the directory containing your batch file to the system's PATH environment variable:
+Right-click on the Start menu and select "System."
+Click on "Advanced system settings" on the left.
+In the System Properties window, click on the "Environment Variables" button.
+Under the "System variables" section, find the Path variable, select it, and click "Edit."
+Click "New" and add the full path to the directory containing your batch file.
+Also add full path to /venv/ folder within project.
+
+Restart the Command Prompt:
+
+Close and reopen the command prompt to ensure that it recognizes the changes to the PATH variable.
+Now, you should be able to run your script using the custom command ytd:
+
+ytd "https://www.youtube.com/watch?v=3681ZYbDSSk&t=54s&ab_channel=DappUniversity"
+
+
+This assumes that your virtual environment is located in a subdirectory named venv relative to your script. Adjust the paths accordingly if your setup is different.
