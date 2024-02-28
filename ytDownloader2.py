@@ -36,22 +36,21 @@ def main():
         if os_system == 'Windows':
             print("Os system detected: ", os_system)
             final_destination = r"C:\Users\{}\Downloads".format(loggedAs)
-            
+            print("Downloading to : ", final_destination)
         elif os_system == 'Linux':
             print("Os system detected: ", os_system)
             final_destination = r"/home/{}/".format(loggedAs)
-            
+            print("Downloading to : ", final_destination)
         else: 
             print("Undetected OS system")
             final_destination = input("Undetected OS system, specify download destination: ")
-            
+            print("Downloading to : ", final_destination)
 
-        print("Downloading to : ", final_destination)
         yd.download(final_destination) 
-        print("Downloaded Successfully !!! ")
     except Exception as e:
         print(f"An error occurred: {e}")
     
 
 if __name__ == "__main__":
     main()
+
